@@ -37,71 +37,6 @@ Not a fan of bits of the stack? Fork it, change it, and use `npx create-remix --
   npm install netlify-cli -g
   ```
 
-- Create or connect to your Netlify project by running through the Netlify `init` script:
-
-  ```sh
-  netlify init
-  ```
-
-- Add your Supabase and session environment variables to a `.env` file like [`.env.sample`](./.env.sample) file or through the Netlify project dashboard at [https://app.netlify.com/](https://app.netlify.com/) Site settings/Build & deploy/Environment:
-
-  ```
-  SUPABASE_URL=""
-  SUPABASE_ANON_KEY=""
-  SESSION_SECRET=""
-  ```
-
-> There is more information about the Supabase variables [in the Database section below](#database). The initial `create-remix` command will [create the `SESSION_SECRET` variable](https://github.com/netlify-templates/kpop-stack/blob/fd68e4de2f4034328481c9b26fa67e298ef20204/remix.init/index.js#L47) which is a random string of 16 characters, so feel free to just set a random 16 chars if not running `remix-create`.
-
-  <details>
-  <summary>Environment Variable list in project dashboard.</summary>
-
-![screenshot of env vars in Netlify UI](https://res.cloudinary.com/dzkoxrsdj/image/upload/v1649265873/CleanShot_2022-04-06_at_13.23.38_2x_sh3hoy.jpg)
-
-  </details>
-
-- Start dev server:
-
-  ```sh
-  npm run dev
-  ```
-
-This starts your app in development mode, rebuilding assets on file changes.
-
-### Running Locally
-
-Running `npm run dev` will also trigger the Netlify local development environment which will pull in all the [environment variables](https://docs.netlify.com/configure-builds/environment-variables/#declare-variables) of your Netlify project. You can learn more about this project's Supabase environment variables in [the Database section below](#database). With Netlify dev you can also:
-
-- test functions
-- test redirects
-- share a live session via url with `netlify dev --live`
-- [and more](https://cli.netlify.com/netlify-dev/) :)
-
-### Relevant code:
-
-This is a pretty simple note-taking app, but it's a good example of how you can build a full stack app with Remix and Supabase. The main functionality is creating users, logging in and out, and creating and deleting notes.
-
-- creating users, and logging in and out [./app/models/user.server.ts](./app/models/user.server.ts)
-- user sessions, and verifying them [./app/session.server.ts](./app/session.server.ts)
-- creating, and deleting notes [./app/models/note.server.ts](./app/models/note.server.ts)
-
----
-
-## Database
-
-This project uses [Supabase](https://supabase.com/) for data storage and user authentication.
-
-### Environment Variables
-
-You will need these 2 environment variables to connect to your Supabase instance:
-
-- `SUPABASE_ANON_KEY`:
-
-  Found in Settings/API/Project API keys
-  <details><summary> See screenshot</summary>
-    
-    ![supabase anon key location](https://res.cloudinary.com/dzkoxrsdj/image/upload/v1649193447/Screen_Shot_2022-04-05_at_5.15.45_PM_ipdgcc.jpg)
-
   </details>
 
 - `SUPABASE_URL`:
@@ -164,6 +99,7 @@ You can add your environment variables to an `.env` file (like shown in the samp
     profile_id uuid references public.profiles not null,
 
     primary key (id)
+  dl
   );
 
   -- inserts a row into public.users
